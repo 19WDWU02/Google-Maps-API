@@ -8,9 +8,11 @@
     /* width: 600px; */
 }
 
-#map2,
-#map3{
-    width: 50%;
-    float: left;
-    height: 300px;
+#details{
+    padding: 30px;
+    display: none;
+}
+
+#details ul{
+    list-style-position: inside;
 }

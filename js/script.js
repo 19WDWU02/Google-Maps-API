@@ -15,7 +15,7 @@ var allMarkers = [
         id: 2,
         lat: -41.2936945,
 		lng: 174.7731592,
-        title: 'Kaffee Eis - Cuba St',
+        title: 'Kaffee Eis',
         description: 'Kaffee Eis on Cuba St',
         openingHours: {
             Monday: '7.30am - 11pm',
@@ -26,7 +26,7 @@ var allMarkers = [
         id: 3,
         lat: -41.291377,
 		lng: 174.7922569,
-        title: 'Kaffee Eis - Oriental Bay',
+        title: 'Kaffee Eis',
         description: 'Kaffee Eis on Oriental Bay',
         openingHours: {
             Monday: '7.30am - 6pm',
@@ -37,7 +37,7 @@ var allMarkers = [
         id: 4,
         lat: -41.293972,
         lng: 174.782270,
-        title: 'Kaffee Eis - Courtenay Place',
+        title: 'Kaffee Eis',
         description: 'Kaffee Eis on Courtenay Place',
         openingHours: {
             Monday: '7.30am - 11pm',
@@ -48,7 +48,7 @@ var allMarkers = [
         id: 5,
         lat: -41.287890,
         lng: 174.779022,
-        title: 'Kaffee Eis - Frank Kitts Lagoon',
+        title: 'Kaffee Eis',
         description: 'Kaffee Eis on Frank Kitt\'s Lagoon',
         openingHours: {
             Monday: '10am - 6pm',
@@ -60,7 +60,7 @@ var allMarkers = [
 function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -41.286461, lng: 174.776230},
-      zoom: 13,
+      zoom: 15,
       backgroundColor: '#48dbfb',
       styles: [
           {
@@ -134,15 +134,39 @@ function initMap(){
         });
         addClickEventToMarker(marker);
     }
+
     var infobox;
+    var firstMarker;
+    var secondMarker;
     function addClickEventToMarker(singleMarker){
+
         if(infobox){
             infobox.close();
         }
         infobox = new google.maps.InfoWindow();
         google.maps.event.addListener(singleMarker, 'click', function(){
+            console.log('position is ' + singleMarker.position);
             infobox.setContent('<div><h3>'+singleMarker.markerTitle+'</h3></div>');
-            infobox.open(map, singleMarker);
+            // infobox.open(map, singleMarker);
+
+
+            for (var i = 0; i < allMarkers.length; i++) {
+                if (allMarkers[i].id === singleMarker.markerID) {
+                    var markerSingle = allMarkers[i];
+                    break;
+                }
+            }
+
+            $('#details').show();
+            $('#details').find('h2').text(markerSingle['title']);
+            $('#details').find('p').text(markerSingle['description']);
+            $('#mon').text(markerSingle['openingHours']['Monday']);
+            $('#tues').text(markerSingle['openingHours']['Tuesday']);
+
+
+
+
+
         });
     }
 
