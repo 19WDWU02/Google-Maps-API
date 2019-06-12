@@ -145,7 +145,7 @@ function initMap(){
         }
         infobox = new google.maps.InfoWindow();
         google.maps.event.addListener(singleMarker, 'click', function(){
-            console.log('position is ' + singleMarker.position);
+            console.log('position of singleMarker is ' + singleMarker.position);
             infobox.setContent('<div><h3>'+singleMarker.markerTitle+'</h3></div>');
             // infobox.open(map, singleMarker);
 
@@ -163,6 +163,7 @@ function initMap(){
             $('#mon').text(markerSingle['openingHours']['Monday']);
             $('#tues').text(markerSingle['openingHours']['Tuesday']);
 
+            singleMarker.setIcon('images/blueMarker.png');
 
 
 
