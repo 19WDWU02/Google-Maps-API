@@ -16,3 +16,19 @@
 #details ul{
     list-style-position: inside;
 }
+
+label{
+    margin-left: 100px;
+    margin-top: 10px;
+}
+
+#location{
+    width: 400px;
+    line-height: 20px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#placeInfo img{
+    max-width: 200px;
+}

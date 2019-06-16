@@ -3,8 +3,8 @@ var allMarkers = [
     {
         id: 1,
         lat: -41.292662,
-		lng: 174.778967,
-		title:'Tommy Millions',
+    		lng: 174.778967,
+    		title:'Tommy Millions',
         description: 'Tommy Millions Pizza and Icecream',
         openingHours: {
             Monday: '11am - 11pm',
@@ -14,7 +14,7 @@ var allMarkers = [
     {
         id: 2,
         lat: -41.2936945,
-		lng: 174.7731592,
+		      lng: 174.7731592,
         title: 'Kaffee Eis',
         description: 'Kaffee Eis on Cuba St',
         openingHours: {
@@ -25,7 +25,7 @@ var allMarkers = [
     {
         id: 3,
         lat: -41.291377,
-		lng: 174.7922569,
+		      lng: 174.7922569,
         title: 'Kaffee Eis',
         description: 'Kaffee Eis on Oriental Bay',
         openingHours: {
@@ -226,12 +226,23 @@ function initMap(){
                 alert('sorry there is no routes available');
             }
         })
-
-
-
-
-
     }
+
+    var input = document.getElementById('location');
+    var options = {
+      componentRestrictions: {country: 'nz'}
+    };
+    var autoComplete = new google.maps.places.Autocomplete(input, options);
+    autoComplete.addListener('place_changed', function(){
+        console.log('the place has been changed');
+        var place = autoComplete.getPlace();
+        console.log(place);
+        map.panTo(place.geometry.location);
+        var placeInfo = document.getElementById('placeInfo');
+        placeInfo.innerHTML = '<h2>Welcome to '+place.name+'</h2>';
+        placeInfo.innerHTML += '<img src="'+place.photos[0].getUrl()+'">';
+    });
+
 
 }
 
